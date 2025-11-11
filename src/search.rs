@@ -1,6 +1,11 @@
+use std::error::Error;
 use std::fs;
 
-fn recursive_search(query: &str, dir: &str, case_sensitive: bool) -> Result<(), Box<dyn Error>> {
+pub fn recursive_search(
+    query: &str,
+    dir: &str,
+    case_sensitive: bool,
+) -> Result<(), Box<dyn Error>> {
     for entry in fs::read_dir(dir)? {
         let entry = entry?;
         let path = entry.path();

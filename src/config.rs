@@ -9,19 +9,23 @@ pub struct Config {
 
 impl Config {
     pub fn new(args: &[String]) -> Result<Config, &str> {
-        if args.len() < 3 {
-            return Err("not enough arguments");
-        }
-
-        let recursive = args.get(1).map(|s| s == "-r").unwrap_or(false);
-        let (query, filename) = if recursive {
-            (args[2].clone(), args[3].clone())
-        } else {
-            (args[1].clone(), args[2].clone())
-        };
-
         let case_sensitive = env::var("CASE_INSENSITIVE").is_err();
-
-        Ok(Config { query, filename, case_sensitive, recursive })
+    
+        match args {
+            [_, flag, query, filename] if flag == "-r" => Ok(Config {
+                query: query.clone(),
+                filename: filename.clone(),
+                case_sensitive,
+                recursive: true,
+            }),
+            [_, query, filename] => Ok(Config {
+                query: query.clone(),
+                filename: filename.clone(),
+                case_sensitive,
+                recursive: false,
+            }),
+            _ => Err("Usage: minigrep [-r] <query> <filename>"),
+        }
     }
+
 }

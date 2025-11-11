@@ -1,25 +1,10 @@
-// use std::error::Error;
-
-
-
-
-
-
-
-
-
-
-
-
-// 
-
+pub mod commands;
 pub mod config;
 pub mod search;
-pub mod commands;
 
-use std::error::Error;
 use crate::config::Config;
-use crate::search::{search, search_case_insensitive, recursive_search};
+use crate::search::{recursive_search, search, search_case_insensitive};
+use std::error::Error;
 
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     if config.recursive {

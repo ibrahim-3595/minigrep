@@ -1,5 +1,7 @@
 use hostname::get;
-use minigrep::{Config, cmd_cat, cmd_cd, cmd_ls, cmd_mkdir, cmd_pwd, cmd_rm, cmd_touch};
+use minigrep::config::Config;
+use minigrep::commands::dir::{cmd_cd, cmd_ls, cmd_mkdir, cmd_pwd};
+use minigrep::commands::file::{cmd_cat, cmd_rm, cmd_touch};
 use std::{
     env,
     io::{self, Write},
