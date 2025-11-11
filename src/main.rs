@@ -1,3 +1,5 @@
+// this is a usual bugfix for branch "bugfix"
+
 use hostname::get;
 use minigrep::config::Config;
 use minigrep::commands::dir::{cmd_cd, cmd_ls, cmd_mkdir, cmd_pwd};
