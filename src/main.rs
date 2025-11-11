@@ -1,4 +1,5 @@
 // this is a usual bugfix for branch "bugfix"
+// bug fixed great job no errors in code..
 
 use hostname::get;
 use minigrep::config::Config;
