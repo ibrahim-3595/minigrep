@@ -1,4 +1,6 @@
 // this is a usual bugfix for branch "bugfix"
+// 
+// sync fork to upstream which would require the friend to pull and merge
 
 use hostname::get;
 use minigrep::config::Config;
