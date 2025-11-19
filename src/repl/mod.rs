@@ -1,6 +1,6 @@
-mod prompt;
-mod parser;
-mod executor;
+pub mod prompt;
+pub mod parser;
+pub mod executor;
 
 pub use prompt::prompt;
 pub use parser::parse_input;

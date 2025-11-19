@@ -1,6 +1,7 @@
-pub mod commands;
 pub mod config;
 pub mod search;
+pub mod commands;
+pub mod repl; // <-- ADD THIS LINE
 
 use crate::config::Config;
 use crate::search::{recursive_search, search, search_case_insensitive};
