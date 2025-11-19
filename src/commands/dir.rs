@@ -8,20 +8,27 @@ pub fn cmd_pwd() {
 }
 
 pub fn cmd_ls() {
-    match fs::read_dir(".") {
-        Ok(entries) => {
-            for entry in entries {
-                if let Ok(entry) = entry {
-                    let path = entry.path();
-                    if path.is_dir() {
-                        println!("{}/", path.file_name().unwrap().to_string_lossy());
-                    } else {
-                        println!("{}", path.file_name().unwrap().to_string_lossy());
-                    }
-                }
+    let entries = match fs::read_dir(".") {
+        Ok(e) => e,
+        Err(e) => {
+            eprintln!("ls error: {}", e);
+            return;
+        }
+    };
+
+    for entry in entries {
+        if let Ok(ent) = entry {
+            let meta = ent.metadata().unwrap();
+            let name = ent.file_name().into_string().unwrap();
+
+            if meta.is_dir() {
+                // Blue for folders
+                println!("\x1b[34m{}\x1b[0m", name);
+            } else {
+                // White for files
+                println!("{}", name);
             }
         }
-        Err(e) => println!("Error: {}", e),
     }
 }
 
