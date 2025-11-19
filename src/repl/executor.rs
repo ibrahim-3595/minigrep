@@ -19,6 +19,16 @@ pub fn execute(cmd: Command) -> Result<(), String> {
                 Ok(cmd_cat(&cmd.args[0]))
             }
         }
+<<<<<<< HEAD
+=======
+        "edit" => {
+            if cmd.args.is_empty() {
+                Err("Usage: edit <file>".into())
+            } else {
+                crate::editor::open_editor(&cmd.args[0])
+            }
+        }
+>>>>>>> 18ecb77
         "touch" => Ok(cmd_touch(&cmd.args[0])),
         "mkdir" => Ok(cmd_mkdir(&cmd.args[0])),
         "rm" => Ok(cmd_rm(&cmd.args[0])),

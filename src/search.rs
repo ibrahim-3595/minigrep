@@ -32,27 +32,20 @@ pub fn recursive_search(
     Ok(())
 }
 
-pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-    let mut results = Vec::new();
-
-    for line in contents.lines() {
-        if line.contains(query) {
-            results.push(line);
-        }
-    }
-
-    results
+pub fn search(query: &str, contents: &str) -> Vec<String> {
+    contents
+        .lines()
+        .filter(|line| line.contains(query))
+        .map(|line| line.to_string())
+        .collect()
 }
 
-pub fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
+pub fn search_case_insensitive(query: &str, contents: &str) -> Vec<String> {
     let query = query.to_lowercase();
-    let mut results = Vec::new();
 
-    for line in contents.lines() {
-        if line.to_lowercase().contains(&query) {
-            results.push(line);
-        }
-    }
-
-    results
+    contents
+        .lines()
+        .filter(|line| line.to_lowercase().contains(&query))
+        .map(|line| line.to_string())
+        .collect()
 }

@@ -1,14 +1,16 @@
-<<<<<<< HEAD
 use hostname::get;
-use minigrep::config::Config;
 use minigrep::commands::dir::{cmd_cd, cmd_ls, cmd_mkdir, cmd_pwd};
 use minigrep::commands::file::{cmd_cat, cmd_rm, cmd_touch};
+// use minigrep::config::Config;
 use std::{
     env,
     io::{self, Write},
     process,
 };
 use users::get_current_username;
+
+use minigrep::repl::start_rep;
+use minigrep::{config::Config, run};
 
 fn get_prompt() -> String {
     let username = get_current_username()
@@ -110,28 +112,5 @@ fn cli_loop() {
             }
             _ => println!("Unknown command: {}", parts[0]),
         }
-    }
-}
-=======
-use minigrep::{config::Config, run};
-use minigrep::repl::start_repl;
->>>>>>> 18ecb77
-
-fn main() {
-    let args: Vec<String> = std::env::args().collect();
-
-    if args.len() > 1 {
-        let config = Config::new(&args).unwrap_or_else(|err| {
-            eprintln!("Argument error: {err}");
-            std::process::exit(1);
-        });
-
-        if let Err(err) = run(config) {
-            eprintln!("Application error: {err}");
-            std::process::exit(1);
-        }
-    } else {
-        println!("Welcome to minigrep CLI!");
-        start_repl();
     }
 }
